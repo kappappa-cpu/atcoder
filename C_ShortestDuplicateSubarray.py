@@ -1,3 +1,5 @@
+# C_ShortestDuplicateSubarray
+# https://atcoder.jp/contests/abc395/tasks/abc395_c
 N = int(input())
 
 A = tuple([int(i) for i in input().split()])
