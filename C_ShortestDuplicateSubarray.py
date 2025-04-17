@@ -1,3 +1,5 @@
+# C_ShortestDuplicateSubarray
+# https://atcoder.jp/contests/abc395/tasks/abc395_c
 N = int(input())
 
 A = tuple([int(i) for i in input().split()])
@@ -13,12 +15,11 @@ nears = []
 
 for i in range(N):
   a = A[i]
-  try:
+  if a in checkDic:
     checkDic[a][0] += 1
     nears.append(i - checkDic[a][1])
     checkDic[a][1] = i #現在の座標に更新
-
-  except:
+  else:
     checkDic[a] = [1,i]
 
 print(min(nears)+1)
