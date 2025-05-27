@@ -14,22 +14,15 @@ backList = []
 forSet = set()
 backSet = set()
 
-initf = 0
-initb = 0
-
 # あらかじめ重複なしの種類数を正順でforList、逆順でinvList
 # に入れておく
 for i in range(n):
   t = int(inputList[i])
   u = int(inputList[n-i-1])
-  if t not in forSet:
-    initf += 1
-    forSet.add(t)
-  if u not in backSet:
-    initb += 1
-    backSet.add(u)
-  forList.append(initf)
-  backList.append(initb)
+  forSet.add(t)
+  backSet.add(u)
+  forList.append(len(forSet))
+  backList.append(len(backSet))
 
 answer = 0
   
