@@ -1,6 +1,10 @@
 # https://atcoder.jp/contests/abc313/tasks/abc313_b
 # B - Who is Saikyo?
 
+"""
+深さ優先探索（DFS）
+"""
+
 import sys
 # 再帰制限を解除
 sys.setrecursionlimit(10**7)

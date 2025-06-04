@@ -1,6 +1,10 @@
 # https://atcoder.jp/contests/abc398/tasks/abc398_c
 # C - Uniquenes
 
+"""
+ハッシュテーブルを使って効率化
+"""
+
 n = int(input())
 
 numbers = [int(i) for i in input().split()]

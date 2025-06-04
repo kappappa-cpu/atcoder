@@ -1,5 +1,7 @@
-# C_Bib
+
 # https://atcoder.jp/contests/abc392/tasks/abc392_c
+# C_Bib
+
 n = int(input())
 
 plist = [int(i) for i in input().split()]

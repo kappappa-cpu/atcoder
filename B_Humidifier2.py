@@ -1,6 +1,10 @@
 # B_Humidifier2
 # https://atcoder.jp/contests/abc383/tasks/abc383_b
 
+"""
+numpy.arrayの行列を無理やり使う
+"""
+
 import numpy as np
 
 def cal(p,s):

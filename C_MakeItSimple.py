@@ -1,6 +1,12 @@
 # https://atcoder.jp/contests/abc393/tasks/abc393_c
 # C - Make it Simple
 
+"""
+集合の集合（frozenset of set)を使う
+or
+タプルの集合（tuple of set)を使う
+"""
+
 n, m = map(int,input().split())
 
 eSet = set()

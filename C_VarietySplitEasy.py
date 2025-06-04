@@ -1,7 +1,9 @@
 # https://atcoder.jp/contests/abc397/tasks/abc397_c
 # C - Variety Split Easy
-# プリフィクス/サフィックス走査 (prefix/suffix scan)
 
+"""
+プリフィクス/サフィックス走査 (prefix/suffix scan)
+"""
 n = int(input())
 
 inputList = input().split()

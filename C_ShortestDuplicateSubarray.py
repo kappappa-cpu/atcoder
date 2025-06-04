@@ -1,5 +1,10 @@
 # C_ShortestDuplicateSubarray
 # https://atcoder.jp/contests/abc395/tasks/abc395_c
+
+"""
+ハッシュテーブルを使って効率化
+"""
+
 N = int(input())
 
 A = tuple([int(i) for i in input().split()])
