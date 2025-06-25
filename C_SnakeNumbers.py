@@ -1,46 +1,83 @@
-import math
+# https://atcoder.jp/contests/abc387/tasks/abc387_c
+# C - Snake Numbers
 
-def findDigit(number):
-  return math.ceil(math.log10(number+0.1))
+"""
+「ワープと桁上り」
+最上位桁とnの桁を確認していき、同じか大きい場合はn+1桁を桁上りしてチェックしていく
+nの桁より下が0のみだったら最上位桁のdigit乗でワープをする
+"""
 
-def findTopNumber(number):
+def findDigit(number) -> int:
+  """
+  桁数を返す
+  """
+  k = 0
+  while 10**k <= number:
+      k += 1
+  return max(k, 1)
+
+def findTopNumber(number) -> int:
+  """
+  最上位桁の数字を返す
+  """
   return number//10**(findDigit(number)-1)
 
-def normalCount(num_,count_,ft_, fd_):
-    under = num_ - ft_ * (10** (fd_-1))
-    for i in list(str(under)):
-      if ft_ <= int(i):
-        break
+def findCertainNumber(number,digit) -> int:
+   """
+   特定の桁の数を返す
+   """
+   fd = findDigit(number)
+   return (number // (10**(fd-digit))) % 10
+
+def incrementDigit(number,digit) -> int:
+   """
+   特定の桁の数を桁上りさせ、下の桁を0にした値を返す
+   """
+   fd = findDigit(number)
+   return (number + 10**(fd - digit)) - (number % 10**(fd - digit))
+
+def checkUnder(number, digit) -> bool:
+   """
+   指定した桁より下がすべて0か確認する関数
+   """
+   fd = findDigit(number)
+   reminder = number - ((number//10**(fd-digit))*10**(fd-digit))
+   if reminder == 0:
+      ans = True
+   else:
+      ans = False
+   return ans
+
+def warp(number,digit) -> int:
+   """
+   指定した桁がインクリメントするときに、その間にヘビ数が何個あるかを返す関数
+   注:必ずcheckUnderがTrueのときのみ実行
+   """
+   return findTopNumber(number)**(findDigit(number)-digit)
+
+if __name__ == '__main__':
+
+  inputNumbers = input().split()
+    
+  l = int(inputNumbers[0])
+  r = int(inputNumbers[1]) + 1
+
+  num = l
+  count = 0
+
+  while num < r:
+    digit = findDigit(num)
+    top = findTopNumber(num)
+    for i in range(1,digit+1):
+        if top <= findCertainNumber(num,i) and i !=1:
+          # ヘビ数ではない状態
+          num = incrementDigit(num,i)
+          break
+        elif checkUnder(num,i) and i != digit and incrementDigit(num,i) < r:
+          count += warp(num,i)
+          num = incrementDigit(num,i)
+          break
     else:
-      count_+=1
-      
-    num_+=1 
-    return num_, count_
-  
-
-  
-l = 252509054433933519
-r = 760713016476190692 + 1
-
-num = l
-count = 0
-
-while num < r:
-    ft = findTopNumber(num)
-    fd = findDigit(num)
-    nextLarge = (ft + 1)*10**(fd-1)
-    check = True if nextLarge < r else False
-    print(num, count, ft, fd, nextLarge, check)
-    under = num - ft * (10** (fd-1))
-    # print("under:", set(list(str(under))))
-    """
-    2521のnextLargeが3000、2600、2530になるまでの再帰的な関数を実装する
-    """
-    if set(list(str(num - ft * (10** (fd-1))))) == {'0'} and check:
-        print("ワープ")
-        count += ft ** (fd -1)
-        num = nextLarge
-    else:
-        num,count = normalCount(num,count,ft, fd)
-
-print(count)
+        num = incrementDigit(num,i)
+        count += 1
+  print(count)
