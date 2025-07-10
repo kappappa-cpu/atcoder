@@ -1,5 +1,5 @@
 # https://atcoder.jp/contests/abc396/tasks/abc396_c
-
+# C - Buy Balls
 import numpy as np
 
 """"
